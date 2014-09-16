@@ -7,7 +7,7 @@
 0. Clone the project
 
 ```sh
-  $ git clone git@github.com:springload/....
+  $ git clone git@github.com:springload/SporeJS.git
 ```
 
 1. Install (You might be able to skip the first two steps and " grunt build" if you have bower & grunt already installed)
