@@ -1,0 +1,87 @@
+{% extends "template.j2" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/css/marketing.css">
+{% endblock %}
+
+{% block layout %}
+
+    <div class="content bottom-l site-banner">
+        <div class="sensible-max">
+            <h1><span class="color--brand">SporeJS – </span><br>Build efficient, fast and robust applications in Node.js</h1>
+            <h3>
+                SporeJS is a PAC (Presentation Abstraction Control) Framework which helps developers build solid web applications and RESTful APIs.
+            </h3>
+
+            <div class="home__actions">
+                
+                {% if not user %}
+
+                    <h3><a class="btn btn-primary btn--outline btn--outline-ghost" href="/login">Sign in</a> - <a class="btn btn-primary btn--outline btn--outline-ghost" href="/register">Register</a></h3>
+                    <p></p>
+
+                {% else %}
+                    <p>
+                        Hey {{ user.email }},
+                    </p>
+
+                    <h3>
+                        <a class="btn btn-secondary btn--outline btn--outline-ghost" href="/logout" title="">Logout</a>
+                    </h3>
+
+                {% endif %}
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+    
+
+
+    <div class="content">
+        <div class="sensible-max">
+    {% if not user %}
+            <h2>Express 4</h2>
+            <p>
+                Under the hood we use Express as a minimal and flexible application core, providing a robust set of features for building your applications.
+            </p>
+
+            <h2>Sequelize ORM</h2>
+            <p>
+                The Sequelize library provides easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
+            </p>
+
+            <h2>User - Role access distinction</h2>
+            <p>
+                Out of the box support for user / roles access distinction. Only show specific content to certain users.
+            </p>
+
+            <h2>Full CRUD implementation</h2>
+            <p>
+                Build CRUD interfaces from your models in minutes.
+            </p>
+
+            <h2>RAD optimized</h2>
+            <p>
+                We take care of the API and provide you with an "easy as" application framework, so you can focus on building a great user experience.
+            </p>
+    {% endif %}
+            <hr/>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="sensible-max">
+
+
+            <a href="https://github.com/springload/spore" title="">SporeJS</a> |
+            <a href="http://springload.co.nz" title="">Springload</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}

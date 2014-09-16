@@ -1,0 +1,29 @@
+{% extends "auth/template.j2" %}
+{% import "forms.j2" as form %}
+
+{% set body_class = "view--dark" %}
+{% block auth %}
+	<h1>Create an account</h1>
+	<p>
+		Fill out your details, and we'll send you an email to confirm your account.
+	</p>
+
+    {{ form.errors(validationErrors) }}
+
+	<form method="POST" action="" autocomplete="off">
+        {{ form.protect(_csrf)  }}
+        {{ form.as_p('name', '', { block: true, placeholder: 'Name' }) }}
+        {{ form.as_p('email', '', { block: true, placeholder: 'Email', type: 'email' }) }}
+        {{ form.no_autocomplete() }}
+        {{ form.as_p('password', '', { block: true, placeholder: 'Password', type: 'password' }) }}
+        {{ form.as_p('confirmPassword', '', { block: true, placeholder: 'Confirm password', type: 'password' }) }}
+        {{ form.submit('Go', {block: true}) }}
+	</form>
+
+{% endblock %}
+
+{% block after %}
+    <p class="text--center">
+        <a href="/" title="" class="color-link--rev">Back home</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "auth/template.j2" %}
+{% block auth %}
+	<h1>Great, you've signed up.</h1>
+	{#<p>#}
+		{#Check your inbox for a link to verify your account.#}
+	{#</p>#}
+	<p>
+        Continue to your dashboard
+	</p>
+    <p>
+        <a href="/dashboard" class="btn-primary btn--block">Continue</a>
+    </p>
+{% endblock %}

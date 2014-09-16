@@ -1,0 +1,39 @@
+fixtures:
+
+    # ROLES
+
+    - model: roles
+      data:
+        role: guest
+
+    - model: roles
+      data:
+        role: user
+
+    - model: roles
+      data:
+        role: admin
+
+    - model: roles
+      data:
+        role: superadmin
+
+    - model: roles
+      data:
+        role: root
+
+    # USER
+
+    - model: users
+      data: 
+        name: "John Spring"
+        email: "root@springload.co.nz"
+        password: "springload"
+        apikey: "a4089fb2d9bc739f484cb112a63ca267"
+
+    # USER ROLE
+
+    - model: userRole
+      data: 
+        user_id: 1
+        role_id: 5

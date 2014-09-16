@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SporeJS - Grow your project</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/site.css">
+    {% block css %}{% endblock %}
+    <script>
+        window.csrfToken = "{{ _csrf }}";
+    </script>
+</head>
+<body class=" {{ body_class }}">
+
+{% if flash %}
+    <div class="flashes">
+        {% if flash.error %}
+            <div class="flash flash--error">
+                {% for val in flash.error %}
+
+                     {{ val }}
+
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if flash.success %}
+            <div class="flash">
+                {% for val in flash.success %}
+
+                     {{ val }}
+
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+
+
+{% block layout %}
+
+
+    <div class="content">
+        <div class="sensible-max">
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+
+<script src="/js/site.js" type="text/javascript" charset="utf-8"></script>
+{% block js %}{% endblock %}
+
+{% block bootstrap %}{% endblock %}
+
+</body>
+</html>

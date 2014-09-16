@@ -1,0 +1,23 @@
+{% extends "auth/template.j2" %}
+{% block auth %}
+	<h1>Resend validation email</h1>
+	
+
+	{% if error %}
+	<p>
+		{{ error }}
+	</p>
+	{% endif %}
+
+	<form action="{{signup.route}}/resend-verification" method="POST" accept-charset="utf-8" autocomplete="off">
+		<input type="hidden" name="_csrf" value="{{_csrf}}">
+		<p>
+			<label for="email"></label>
+			<input type="email" name="email" value="" placeholder="">
+		</p>
+		<p>
+			<button class='btn btn--submit'>Go</button>
+		</p>
+	</form>
+
+{% endblock %}

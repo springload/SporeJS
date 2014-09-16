@@ -1,0 +1,15 @@
+{% extends "template.j2" %}
+{% set body_class = "view--dark" %}
+{% block layout %}
+<div>&nbsp;</div>
+<div class="cf">
+    <div class="dialog">
+        <div class="dialog__content">
+            {% block auth %}
+            {% endblock %}
+        </div>
+        {% block after %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "admin/dashboard.j2" %}
+
+{% block header %}
+<h1>
+    <a href="/{{ model }}" class="link--plain" title="">{{ model|capitalize(model) }}</a> <span class="chevron">›</span> List
+</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="sensible-max">
+        <div class="list">
+
+            {% if data %}
+                    <div class="editor__content">
+                         <div class="container">
+
+                         {% if cols %}
+                         <div class="row header">
+                             {% for key, value in cols %}
+
+                                 <div class="column">{{ value }}</div>
+
+                             {% endfor %}
+                             <div class="column">Actions</div>
+                         </div>
+                         {% endif %}
+
+                         {% for row in data %}
+                            <div class="row">
+
+                            {% for key, item in row %}
+                                {% if key == "id" and row.hashId.value %}
+                                     <div class="column"><a href="/{{ model }}/{% if useHashId %}{{ row.hashId.value }}{% else %}{{ row.id.value }}{% endif %}">{{ item.value }}</a></div>
+                                {% elif key == "hashId" and row.hashId.type == "hidden" %}
+                                {% else %}
+                                     <div class="column">{{ item.value }}</div>
+                                {% endif %}
+
+                            {% endfor %}
+                                <div class="column"><a href="/{{ model }}/{% if useHashId %}{{ row.hashId.value }}{% else %}{{ row.id.value }}{%endif%}/edit" class='' title="">Edit</a>
+                                <a href="/{{ model }}/{% if useHashId %}{{ row.hashId.value }}{% else %}{{ row.id.value }}{%endif%}/delete" class='' title="">Delete</a></div>
+                            </div>
+                        {% endfor %}
+                        <div>
+                        <br />
+                        <p>
+                            <a href="/{{ model }}/new"><span class="btn-primary">Create {{ model }}</span></a>
+                        </p>
+                    </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

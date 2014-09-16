@@ -1,0 +1,111 @@
+{% macro protect(_csrf) %}
+    <input type="hidden" name="_csrf" value="{{_csrf}}">
+{% endmacro %}
+
+
+
+{% macro field(name, value, params, hidden) %}
+    {% if params.label and hidden != true %}
+        <label for="{{ name }}">{{ params.label }}</label>
+    {% endif %}
+    <input class="field{% if params.block %} field--block{% endif %}{% if params.short %} field--short{% endif %}{% if params.class %} {{ params.class }}{% endif %}" {% if hidden == true %}type="hidden"{% else %}type="{{ params.type|default('text') }}"{% endif %} name="{{ name }}" id="{{ name }}" value="{{ value|default('') }}" placeholder="{{ params.placeholder }}">
+{% endmacro %}
+
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+{% macro selectbox(name, value, params) %}
+    <label for="{{ name }}">{{ params.label }}</label>
+    <select id="{{ name }}" name="{{ name }}">
+    {% for key, value in value %}
+    	 <option value="{{ key }}">{{ value }}</option>
+    {% endfor %}
+    </select>
+{% endmacro %}
+
+{% macro checkbox(name, value, params) %}
+    <label for="{{ name }}">{{ params.label }}</label>
+    <input id="{{ name }}" type="checkbox" name="{{ name }}" value="{{ value }}" class="field--checkbox">
+{% endmacro %}
+
+
+
+{% macro textarea(name, value, params) %}
+<textarea name="{{ name }}" class="field" placeholder="{{ params.placeholder }}" cols="{{ params.cols|default(50) }}" rows="{{ params.rows|default(5) }}">{{ value }}</textarea>
+{% endmacro %}
+
+
+{% macro switch(name, value, params) %}
+
+    <label for="{{ name }}[true]">{{ params.positive }}</label>
+    <input type="radio" name="{{ name }}" id="{{ name }}[true]" value="true" {% if value  %} checked="checked"{% endif %}>
+    <label for="{{ name }}[false]">{{ params.negative }}</label>
+    <input type="radio" name="{{ name }}" id="{{ name }}[false]" value="false" {% if not value  %} checked="checked"{% endif %}>
+
+{% endmacro %}
+
+
+{% macro as_p(name, value, params, type) %}
+    <p>
+        {{ fromType(name, value, params, type) }}
+    </p>
+{% endmacro %}
+
+
+{% macro as_div(name, value, params, type) %}
+    <div>
+        {{ fromType(name, value, params, type) }}
+    </div>
+{% endmacro %}
+
+{% macro fromType(name, value, params, type) %}
+    {% if type == "textarea" %}
+        {{ textarea(name, value, params) }}
+    {% elif type == "checkbox" %}
+        {{ checkbox(name, value, params) }}
+    {% elif type == "switch" %}
+        {{ switch(name, value, params) }}
+    {% elif type == "select" %}    
+        {{ selectbox(name, value, params) }}
+    {% elif type == "hidden" %}
+        {{ field(name, value, params, true) }}
+    {% else %}
+        {{ field(name,value, params) }}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro no_autocomplete() %}
+    <input type="text" placeholder="" class="field--hidden">
+{% endmacro %}
+
+{% macro autoField(item) %}
+    {% if item.type == "hidden" %}
+            {% set param = { placeholder: item.placeholder, label: item.label, block: true, type: hidden } %}
+            {{ fromType(item.field, item.value, param, item.type) }}
+    {% else %}
+        {% set param = { placeholder: item.placeholder, label: item.label, block: true, type: item.type } %}
+        {{ as_p(item.field, item.value, param, item.type) }}
+    {% endif %}
+{% endmacro %}
+
+{% macro submit(label, params) %}
+    <p>
+        <button class='btn-primary{% if params.block %} btn--block{% endif %}'>{{ label }}</button>
+    </p>
+{% endmacro %}
+
+
+{% macro errors(errors) %}
+        {% for field, errorList in errors %}
+            {% for msg in errorList %}
+                <span class="text-danger">{{ msg }}</span><br />
+            {% endfor %}
+        {% endfor %}
+{% endmacro %}
+
+

@@ -1,0 +1,1200 @@
+$base-spacing-unit: 1.5em;
+$color-background: #f3f3f3;
+
+
+@import "mixins";
+
+
+
+html {
+    min-height: 100%;
+}
+
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 0;
+    color: #333;
+    background: $color-background;
+    position: relative;
+    line-height: 1.375;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+    margin-top: 0;
+}
+
+
+h1, h3 {
+    font-weight: normal;
+}
+
+
+h2 {
+    font-weight: normal;
+    margin-top: $base-spacing-unit;
+    margin-bottom: 0;
+}
+
+h4 {
+    font-weight: 600;
+}
+
+
+a {
+    @extend %a;
+}
+
+
+p {
+    margin-top: .5em;
+}
+
+
+hr {
+    height: 1px;
+    background: #ddd;
+    border: none;
+    margin-top: $base-spacing-unit;
+}
+
+
+.small {
+    font-size: .875em;
+}
+
+
+@include small-only {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.25em;
+        margin-top: 5%;
+    }
+
+    h3 {
+        font-size: 1.125em;
+    }
+
+    .hide-small {
+        display: none !important;
+    }
+
+
+    hr {
+        margin-top: 10%;
+    }
+}
+
+@include medium {
+    .show-small {
+        display: none !important;
+    }
+}
+
+/*
+    ---------------------------------------------------------------------------
+    The elements of typographic style
+    ---------------------------------------------------------------------------
+*/
+
+%text--center {
+    text-align: center;
+}
+
+.text--center {
+    @extend %text--center;
+}
+
+.text--right {
+    text-align: right;
+}
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Structure
+    ---------------------------------------------------------------------------
+*/
+
+.grid {
+    position: relative;
+}
+
+%cf {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.cf {
+    @extend %cf;
+}
+.grid {
+    @extend %cf;
+}
+
+.grid > * {
+    // display: block;
+}
+
+.grid__item, .left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.col-1-2 {
+    width: 50%;
+}
+
+.col-3-4 {
+    width: 75%;
+}
+
+.col-1-4 {
+    width: 25%;
+}
+
+
+.block {
+    padding: .5em;
+    background: #eee;
+    margin-bottom: 1em;
+}
+
+.content {
+    @extend %padding;
+}
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Colours
+    ---------------------------------------------------------------------------
+*/
+
+
+$color-link: #00A0A7;
+$color-link-rev: #9AA7AD;
+$color-brand: #50f4e3;
+$color-light: #999;
+
+.color--brand {
+    color: $color-brand;
+}
+
+.color-link--rev {
+    color: $color-link-rev;
+}
+
+%a {
+    color: $color-link;
+    &:hover{
+        color: darken($color-link, 5%);
+    }
+}
+
+
+
+.link--plain {
+    text-decoration: none;
+}
+
+.supporting {
+    color: $color-light;
+}
+
+/*
+    ---------------------------------------------------------------------------
+    Nav
+    ---------------------------------------------------------------------------
+*/
+
+
+.nav {
+    @extend %cf;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    & > li {
+        display: inline-block;
+    }
+}
+
+.nav--inline {
+    > li {
+        margin-left: .5em;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+
+.chevron {
+    color: $color-light;
+    font-weight: 300;
+    margin-left: .25em;
+    margin-right: .125em;
+}
+
+/*
+    ---------------------------------------------------------------------------
+    Animations
+    ---------------------------------------------------------------------------
+*/
+
+
+
+/*  Modal content fadeIn */
+
+@-webkit-keyframes modalIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(10%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+
+@keyframes modalIn {
+    0% {
+        opacity: 0;
+        transform: translateY(5%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* Crud item fade-in */
+
+@-webkit-keyframes entrance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes entrance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Form styles
+    ---------------------------------------------------------------------------
+*/
+
+
+
+
+.crud__item {
+    padding: .5em;
+    border: solid 1px #eee;
+    border-radius: .125em;
+    margin-top: .5em;
+    -webkit-animation: entrance .2s ease-out, modalIn .2s ease-out;
+    animation: entrance .2s ease-out;
+
+
+    & > :first-child {
+        margin: 0;
+    }
+}
+
+
+.crud__link {
+    @extend %a;
+    cursor: pointer;
+}
+
+.crud__delete {
+
+}
+
+$field-border: #ddd;
+$field-border-focus: #A1B7CE;
+
+%bb {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.field {
+    border: solid 1px $field-border;
+    padding: .5em;
+    font-family: inherit;
+    font-size: inherit;
+    color: #444;
+    -webkit-appearance: none;
+    @extend %block--round;
+    @extend %bb;
+
+    &:focus {
+        outline: none;
+        border-color: $field-border-focus;
+        box-shadow: 0 0 5px rgba(0,0,255, 0.05);
+    }
+}
+
+%field--nude {
+    border-radius: 0;
+    padding-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom-style: dashed;
+
+    &:focus {
+        box-shadow: none;
+        background: #EDF5FA;
+    }
+}
+
+%field--block {
+    display:block;
+    width: 100%;
+}
+
+.field--block {
+    @extend %field--block;
+}
+
+.field--short {
+    max-width: 6em;
+}
+
+.field--jumbo {
+    font-size: $base-spacing-unit;
+    @extend %field--nude;
+    @extend %field--block;
+}
+
+
+.field--detail {
+    @extend %field--nude;
+    @extend %field--block;
+    font-size: .875em;
+    color: #666;
+}
+
+.field--detail-none {
+    border-bottom-style: none;
+}
+
+
+.field--textarea {
+    @extend %bb;
+    border: solid 1px #ddd;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-size: inherit;
+    display: inline-block;
+    width: 100%;
+    padding: .5em;
+}
+
+.field--hidden {
+    display: none;
+}
+
+
+.field--img-preview {
+    margin-top: 1em;
+
+    > img {
+        max-width: 100%;
+    }
+}
+
+
+.label {
+    width: 7em;
+    display: inline-block;
+}
+
+%keyline-top {
+    border-top: solid 1px #eee;
+}
+
+.form__actions {
+    margin-top: 1em;
+    padding-top: 1em;
+    @extend %keyline-top;
+}
+
+
+
+.control-group--jumbo {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.control-group > .control-label {
+    display: inline-block;
+    width: 10em;
+    color: #666;
+}
+
+.control-group > .controls {
+    display: inline-block;
+}
+
+.policies {
+    border-top: solid 1px  #ddd;
+    margin-top: 1em;
+    padding-top: $base-spacing-unit;
+}
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Buttons
+    ---------------------------------------------------------------------------
+*/
+
+%btn {
+    @extend %inline-block;                          /* [1] */
+    @extend %align--middle;                         /* [2] */
+    //@extend .user-select-none;
+    border-radius: $base-spacing-unit/6;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;                                /* [5] */
+    font-family: inherit;                           /* [4] */
+    font-size: inherit;                           /* [4] */
+    line-height: 2.25;                               /* [7] */
+    margin: 0 0 0 0;                          /* [6] */
+    padding-bottom: 0;                              /* [6] */
+    padding-left: $base-spacing-unit;               /* [7] */
+    padding-right: $base-spacing-unit;              /* [7] */
+    padding-top: 0;                                 /* [6] */
+    white-space: nowrap;                            /* [3] */
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+
+    &,
+    &:hover {
+        text-decoration:none;   /* [9] */
+    }
+
+    &:active,
+    &:focus {
+        outline:none;
+    }
+}
+
+.btn {
+    @extend %btn;
+}
+
+.btn.-block,
+.btn--block{
+    @extend %text--center;
+    @extend %bb;
+    display: block;
+    width: 100%;
+}
+
+
+.btn--block--small {
+    @include small-only {
+        display: block;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+
+.btn-primary {
+    @extend .btn;
+    background: $color-link;
+    color: #fff;
+    &:hover {
+        color: #fff;
+        background: darken($color-link, 5%);
+    }
+    &:focus {
+        border-color:  darken($color-link, 20%);
+        background: darken($color-link, 5%);
+    }
+}
+
+.btn-secondary {
+    @extend .btn;
+    background: #aaa;
+    color: #fff;
+    &:hover {
+        background: #999;
+        color: #fff;
+    }
+    &:focus {
+        border-color: #333;
+        background: #888;
+    }
+}
+
+$color-danger: #DA523F;
+
+.text-danger {
+    color: $color-danger;
+}
+
+
+.btn-danger {
+    @extend .btn;
+    color: #fff;
+    background: $color-danger;
+
+    &:hover {
+        color: #fff;
+        background: darken($color-danger, 5%);
+    }
+    &:focus {
+        border-color:  darken($color-danger, 20%);
+        background: darken($color-danger, 5%);
+    }
+}
+
+
+.btn--outline {
+    border: solid 1px;
+    background: transparent;
+
+    &:focus {
+        border-color:  darken($color-link, 10%);
+    }
+
+}
+
+.btn--outline-ghost {
+    &:hover {
+        border-color: transparent;
+    }
+}
+
+
+
+%btn:active {
+    color: #fff;
+    background: #333;
+}
+
+%btn:focus {
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 5px rgba(0,128,255,0.4);
+    // margin-left: -1px;
+    // margin-right:-1px;
+    // margin-bottom: -1px;
+    // margin-top: -1px;
+}
+
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Modals
+    ---------------------------------------------------------------------------
+*/
+
+.modal {
+    display: none;
+
+    &:before {
+        content: "";
+    }
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(99, 99, 99, 0.5);
+    animation: entrance .1s;
+    text-align: center;
+    z-index: 1;
+}
+
+
+$easing: cubic-bezier(.61,.01,.32,.99);
+
+.modal__content {
+    position: relative;
+    margin-top: 2em;
+    padding: 2em;
+    display: inline-block;
+    text-align: left;
+    min-width: 30em;
+    // margin: 0 auto;
+    // margin-top: 20%;
+    // max-width: 30em;
+    // height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45em;
+    background: #fff;
+    border-radius: $base-spacing-unit/4;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+
+    > :first-child {
+        margin-top: 0;
+    }
+}
+
+.modal__content--small {
+    max-width: 20em;
+    min-width: 0;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.anim-entrance {
+    -webkit-animation: entrance .1s backwards $easing .05s, modalIn .1s backwards $easing .05s;
+    animation: entrance .1s $easing backwards .105, modalIn .1s backwards $easing .05s;
+}
+
+.anim-exit {
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Angular Animation classes
+    ---------------------------------------------------------------------------
+*/
+.animate-show {
+
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+
+
+
+/*
+    ---------------------------------------------------------------------------
+    Flash messaging
+    ---------------------------------------------------------------------------
+*/
+
+@-webkit-keyframes fadeIn {
+    0% {
+        /*opacity: 0;*/
+        -webkit-transform: translateY(-100%);
+    }
+    5% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    95% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    100% {
+        /*opacity: 0;*/
+        -webkit-transform: translateY(-100%);
+    }
+}
+
+.flash {
+    @extend %text--center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #c0c0c0;
+    padding: 1em;
+    color: #fff;
+    -webkit-animation: fadeIn 2.5s both ease-in-out;
+    right: 0;
+    z-index: 3;
+}
+
+.flash--error {
+    background: #333;
+}
+
+
+/*
+    ---------------------------------------------------------------------------
+    Layout
+    ---------------------------------------------------------------------------
+*/
+
+
+
+.sensible-max {
+    max-width: 45em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+.editor {
+
+
+}
+
+
+.editor__banner__logo {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+
+.editor__nav,
+.editor__content,
+.editor__user {
+    max-width: 45em;
+    margin-left: auto;
+    margin-right: auto;
+    @extend %bb;
+}
+
+.editor__banner {
+    border-bottom: solid 1px #e9e9e9;
+}
+
+.editor__user {
+    @extend %padding;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+
+.editor__user__items {
+    font-size: 14px;
+
+    @include small-only {
+        display: none;
+    }
+}
+
+
+
+
+.editor__content {
+
+    @extend %padding;
+    @extend %block--round;
+    @extend %shadow--panel-light;
+
+    background: #fff;
+    border: solid 1px #eee;
+    margin-bottom: 1em;
+
+    & > :first-child {
+        margin-top: 0;
+    }
+    &:last-child {
+        margin-bottom: $base-spacing-unit * 5;
+    }
+
+    .inline {
+      display: inline;
+    }
+
+    .container {
+      display: table;
+      width: 100%;
+    }
+    .row {
+      display: table-row;
+    }
+    .row.header {
+      font-weight: bold;
+    }
+    .column {
+      display: table-cell;
+      padding: 5px 10px 5px 0;
+    }
+
+
+}
+
+
+%theme--dark {
+    background: #333;
+}
+
+%theme--light {
+    background: #f3f3f3;
+}
+
+.view--dark {
+    @extend %theme--dark;
+}
+
+%center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+%panel--small {
+    max-width: 25em;
+}
+
+%block--round {
+    border-radius: $base-spacing-unit/6;
+}
+
+
+%padding {
+    padding: 1.25em 2em;
+
+    @include small-only {
+        & {
+            padding-top: .75em;
+            padding-bottom: .75em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+    }
+}
+
+
+%bottom-l {
+    padding-bottom: $base-spacing-unit * 2;
+}
+
+
+.bottom-l {
+    @extend %bottom-l;
+}
+
+.editor__nav {
+    @extend %padding;
+    padding-top: $base-spacing-unit * 1.33333;
+}
+
+
+
+%shadow--panel {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+%shadow--panel-light {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    border: solid 1px #e7e7e7;
+}
+
+
+
+
+.dialog {
+    margin-top: 10%;
+    @extend %center;
+    @extend %panel--small;
+    @extend %cf;
+
+    @include small-only {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
+
+.dialog__content {
+    @extend %block--round;
+    @extend %theme--light;
+    @extend %padding;
+    @extend %shadow--panel;
+}
+
+
+/*
+    ---------------------------------------------------------------------------
+    Panel of experts
+    ---------------------------------------------------------------------------
+*/
+
+.q__question {
+
+    @include medium {
+        width: 40%;
+
+        &:after {
+            content: " ";
+        }
+    }
+
+    @include small-only {
+        & + & {
+            margin-top: $base-spacing-unit;
+        }
+    }
+
+    padding: .75em 1.25em .75em;
+    background: #fff;
+    min-height: 8em;
+    position: relative;
+
+    @extend %block--round;
+
+    .q__key {
+        margin-left: -2.25em;
+        margin-right: .5em;
+        position: absolute;
+        top: .6em;
+    }
+
+    & > :first-child {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &:after {
+
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -.5em;
+        border-style: solid;
+        border-color: transparent;
+        border-top-color: #fff;
+        border-width: .5em;
+    }
+}
+
+
+%m {
+    margin-top: $base-spacing-unit;
+    margin-bottom: $base-spacing-unit;
+}
+
+.q__answers {
+    padding-bottom: $base-spacing-unit/2;
+    @extend %m;
+    position: relative;
+    &:before {
+        content: "";
+        left: 75%;
+        top: 0em;
+        bottom: 0;
+        width: 2px;
+        margin-left: -2px;
+        background: #fff;
+        position: absolute;
+    }
+
+    @include medium {
+        &:before {
+            left: 50%;
+        }
+    }
+}
+
+
+
+.q-item {
+    padding: .5em 0;
+
+}
+
+.q-slider {
+    margin-top: .5em;
+}
+
+.q-item__candidate {
+    width: 50%;
+    @include medium {
+        width: 25%;
+    }
+}
+
+.q-item__slider {
+    width: 50%;
+    @include medium {
+        width: 50%;
+    }
+}
+
+
+
+
+.q__help {
+    margin-top: $base-spacing-unit;
+    max-width: 25em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $base-spacing-unit * 2;
+    line-height: 1.2;
+}
+
+
+
+
+    .q__key {
+        padding: .25em .5em;
+        display: inline-block;
+        background: #fff;
+        color: #666;
+        border-radius: 50em;
+        line-height: 1;
+        border: solid 2px;
+        border-color: rgb(214, 214, 214);
+    }
+
+
+    .q__key--small {
+        font-size: .75em;
+    }
+
+    .q__key--left {
+        @include medium {
+            margin-left: -2.25em;
+        }
+    }
+    .q__key--right {
+        @include medium {
+            margin-right: -2.25em;
+        }
+    }
+
+
+    .q-slider {
+        position: relative;
+        // margin-top: 3em;
+
+        .q-slider__label {
+            display: none;
+        }
+
+        &:hover {
+            .q-slider__handle {
+                display: inline-block;
+            }
+        }
+    }
+
+    $slider-arrow-size: .35em;
+
+    .q-slider__label-wrapper {
+        position: absolute;
+        bottom: 100%;
+        width: 10em;
+        margin-left: -5em;
+        text-align: center;
+        margin-bottom: $slider-arrow-size;
+        z-index: 11;
+        @extend %user-select-none;
+        display: none;
+    }
+
+    .q-slider__label {
+
+        background: #333;
+        color: #fff;
+        display: inline-block;
+        padding: $base-spacing-unit / 4;
+        min-width: 4em;
+        @extend %text--center;
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 100%;
+            border-width: $slider-arrow-size;
+            border-style: solid;
+            border-color: transparent;
+            border-top-color: #333;
+            left: 50%;
+            margin-left: -$slider-arrow-size;
+        }
+    }
+
+
+    .q-policy {
+        display: block;
+
+        @include medium {
+            display: inline;
+            white-space: nowrap;
+        }
+    }
+
+    .q-headline {
+        margin-bottom: 0;
+    }
+
+    .q-content {
+        padding-top: 0.5em;
+    }
+
+    .q-policy--answered {
+        color: #888;
+        text-decoration: none;
+
+        &:before {
+            font-size: .5em;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -.25em;
+            line-height: 1;
+            background: #bbb;
+            color: #fff;
+            padding: 0.5em .65em;
+            text-align: center;
+            content: "\2713";
+            border-radius: 10em;
+            margin-left: .125em;
+        }
+    }
+

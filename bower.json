@@ -1,0 +1,32 @@
+{
+  "name": "SporeJS",
+  "version": "0.0.1",
+  "authors": [
+    "joshbarr <josh@joshbarr.com>",
+    "Dave Cartwright <dave@springload.co.nz>"
+  ],
+  "description": "Grow your project",
+  "main": "frontend/app.js",
+  "keywords": [
+    "Voting"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "nunjucks": "~1.0.5",
+    "nouislider": "~6.2.0",
+    "backbone": "latest",
+    "marionette": "latest",
+    "backbone.stickit": "*",
+    "velocity": "latest",
+    "d3": "latest"
+  }
+}

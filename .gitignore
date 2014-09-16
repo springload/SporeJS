@@ -1,0 +1,7 @@
+node_modules/
+app/config/config.js
+bower_components
+public/css/*
+public/js/*
+npm-debug.log
+.idea/

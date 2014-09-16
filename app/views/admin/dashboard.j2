@@ -1,0 +1,88 @@
+{% extends "template.j2" %}
+
+{% block layout %}
+    <div class="editor-wrapper">
+
+        <div class="editor__banner">
+            <div class="editor__user">
+                <div class="grid">
+                    <div class="grid__item">
+                        <a href="/dashboard" class="editor__banner__logo" title="">Spore - Grow your project</a>
+                    </div>
+                    <div class="grid__item right editor__user__items">
+                        <ul class="nav nav--inline">
+                            <li>{{ user.email }}</li>
+                            <li><a href="/change-password" title="">Change password</a></li>
+
+                            {%  if user.userRole.role_id != 5 %}
+                            <li><a href="/delete-account" title="">Delete account</a></li>
+                            {% endif %}
+                            <li><a href="/logout" title="">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor__nav">
+            {% block header %}
+                <h2>Welcome {{ user.name }}</h2>
+            {% endblock %}
+        </div>
+
+        {% block error %}
+             <div class="sensible-max">
+            {% if validationErrors %}
+                <ul>
+                {% for key, item in validationErrors %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+                <ul>
+            {% endif %}
+            </div>
+        {% endblock %}
+
+        {% block content %}
+            <div class="sensible-max">
+
+                 {% if data.models %}
+                 <div class="editor__content">
+                    <p>
+                        Manage your models:
+                    </p>
+                    {% for value in data.models %}
+                    <div class="grid">
+                        <div class="left"><h1>{{ value|capitalize(value) }}</h1></div>
+                        <div class="right"><a href="/{{ value }}" title="" class='btn-primary'>Manage {{ value|capitalize(value) }}</a></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="content">
+                    <h2>API Key</h2>
+                </div>
+
+                 <div class="editor__content">
+
+                    <p>
+                        Use this from your client apps to access your data.
+                    </p>
+
+                    <input type="text" class="field--block field" value="{{ user.apikey }}" disabled="disabled"/>
+
+
+                </div>
+
+
+            </div>
+        {% endblock %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="/js/admin.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}

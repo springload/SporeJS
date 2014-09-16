@@ -1,0 +1,13 @@
+{% extends "auth/template.j2" %}
+{% block auth %}
+	<h1>Email sent</h1>
+	<p>
+		Check your inbox to reset your password.
+	</p>
+	<p>
+		The link is valid for 1 hour.
+	</p>
+    <p>
+        <a href="/login" class="btn-primary btn--block">Back to Log in</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "admin/dashboard.j2" %}
+{% import "forms.j2" as form %}
+
+
+
+    {% block header %}
+            <h1>
+                <a href="/{{ model }}" class="link--plain" title="">{{ model|capitalize(model) }}</a> <span class="chevron">›</span> New
+            </h1>
+    {% endblock %}
+
+{% block content %}
+    <div class="editor__content">
+        <p>
+            Add a new {{ model }}:
+        </p>
+        {% if data %}
+            <form action="/{{ model }}" method="POST" accept-charset="utf-8">
+                {{ form.protect(_csrf) }}
+                {% for key, item in data %}
+                    {{ form.autoField(item) }}
+                {% endfor %}
+                <button type="submit" name="" class="btn-primary">Create</button>
+                <a href="/{{ model }}" class='btn ' title="">Cancel</a>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

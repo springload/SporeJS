@@ -1,0 +1,15 @@
+{% extends "auth/template.j2" %}
+{% block auth %}
+	<h1>Link expired</h1>
+
+	<p>
+		That link's expired. Get a new one:
+	</p>
+	<form action="{{signup.route}}/resend-verification" method="POST" accept-charset="utf-8" autocomplete="off">
+		<input type="hidden" name="_csrf" value="{{_csrf}}">
+		<p>
+			<label for="email"></label>
+			<input type="email" name="email" value="" placeholder="">
+		</p>
+	</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "admin/dashboard.j2" %}
+{% import "forms.j2" as form %}
+
+{% block header %}
+    <h1>
+        <a href="/{{ model }}" class="link--plain" title="">{{ model|capitalize(model) }}</a> <span class="chevron">›</span> View
+    </h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="sensible-max">
+        <div class="list">
+
+            {% if data %}
+            <div class="editor__content">
+                <ul>
+                    {% for key, item in data %}
+                        <li>{{ item.name }} ({{ item.field }}) : <b>{{ item.value }}</b></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="editor__content">
+
+                  <a href="/{{ model }}/{% if useHashId %}{{ data.hashId.value }}{% else %}{{ data.id.value }}{% endif %}/edit" class='btn-primary' title="">Edit</a>
+                  <a href="/{{ model }}/{% if useHashId %}{{ data.hashId.value }}{% else %}{{ data.id.value }}{% endif %}/delete" class='btn btn-danger' title="">Delete</a>
+                  <a href="/{{ model }}" class='btn ' title="">Cancel</a>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

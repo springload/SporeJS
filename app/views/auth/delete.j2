@@ -1,0 +1,32 @@
+{% extends "auth/template.j2" %}
+{% import "forms.j2" as form %}
+
+{% block auth %}
+	<h1>Delete your account</h1>
+	<p>
+		There ain't no coming back for it.
+	</p>
+
+    <form action="{{deleteAccount.route}}" method="POST" accept-charset="utf-8" autocomplete="off">
+        {{ form.protect(_csrf) }}
+
+        <p class="text-danger">
+            {{ user.deleteAccountPhrase }}
+		</p>
+
+        {{ form.as_p('phrase', '', { placeholder: 'Type out the sentence above', block: true }) }}
+        {{ form.no_autocomplete() }}
+        {{ form.as_p('password', '', { placeholder: 'Password', block: true, type: 'Password' }) }}
+
+        <p>
+			<button class='btn-danger btn--block'>Delete account</button>
+		</p>
+
+	</form>
+
+{% endblock %}
+{% block after %}
+    <p class="text--center">
+        <a href="/dashboard" class="color-link--rev">Back</a>
+    </p>
+{% endblock %}

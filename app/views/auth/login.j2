@@ -1,0 +1,38 @@
+{% extends "auth/template.j2" %}
+{% import "forms.j2" as form %}
+
+{% block auth %}
+    <h1>Login</h1>
+
+    {% if validationErrors %}
+        <div class="">
+            {{ form.errors(validationErrors) }}
+        </div>
+    {% endif %}
+
+    <form method="POST" action="">
+        {{ form.protect(_csrf)  }}
+        {{ form.as_p('email', '', { block: true, placeholder: 'Email', type: 'email' }) }}
+        {{ form.no_autocomplete() }}
+        {{ form.as_p('password', '', { block: true, placeholder: 'Password', type: 'password' }) }}
+
+        <div class="grid">
+            <p class="grid__item">
+                {{ form.checkbox('remember_me', '', { label:  'Remember me?'}) }}
+            </p>
+            <p class="grid__item right">
+                <a href="/forgot-password" title="">I forgot my password</a>
+            </p>
+        </div>
+        <p>
+            {{ form.submit('Go', { block: true }) }}
+        </p>
+    </form>
+	
+{% endblock %}
+
+{% block after %}
+    <p class="text--center">
+        <a href="/" title="" class="color-link--rev">Back home</a>
+    </p>
+{% endblock %}

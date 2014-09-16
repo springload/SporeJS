@@ -1,0 +1,36 @@
+{% extends "admin/dashboard.j2" %}
+{% import "forms.j2" as form %}
+
+{% block header %}
+<div class="grid">
+    <h1>
+        <a href="/{{ model }}" class="link--plain" title="">{{ model|capitalize(model) }}</a> <span class="chevron">›</span> Edit
+    </h1>
+</div>
+{% endblock %}
+
+{% block content %}
+
+     <div class="editor cf" data-editor="{% if data.hashId %}{{ data.hashId.value }}{% else %}{{ data.id.value }}{%endif%}">
+     {% if data %}
+        <form action="/{{ model }}/{% if data.hashId %}{{ data.hashId.value }}{% else %}{{ data.id.value }}{%endif%}" method="POST" accept-charset="utf-8">
+            {{ form.protect(_csrf) }}
+            <div class="editor__content">
+            {% for key, item in data %}
+                {{ form.autoField(item) }}
+            {% endfor %}
+            </div>
+            <div class="editor__content">
+                <button type="submit" name="" class="btn-primary">Save</button>
+                <a href="/{{ model }}" class='btn ' title="">Cancel</a>
+            </div>
+        </form>
+     {% endif %}
+     </div>
+
+{% endblock %}
+
+
+{% block bootstrap %}
+
+{% endblock %}
