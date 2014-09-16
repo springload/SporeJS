@@ -1,6 +1,20 @@
 # SporeJS
 
-## Install
+###Build efficient, fast and robust applications in Node.js
+SporeJS is a PAC (Presentation Abstraction Control) Framework which helps developers build solid web applications and RESTful APIs.
+
+**Express 4** - Under the hood we use Express as a minimal and flexible application core, providing a robust set of features for building your applications.
+
+**Sequelize ORM** - The Sequelize library provides easy access to MySQL, MariaDB, SQLite or PostgreSQL databases by mapping database entries to objects and vice versa.
+
+**User - Role access distinction** - Out of the box support for user / roles access distinction. Only show specific content to certain users.
+
+**Full CRUD implementation** - Build CRUD interfaces from your models in minutes.
+
+**RAD optimized** - We take care of the API and provide you with an "easy as" application framework, so you can focus on building a great user experience.
+
+
+# Install
 
 **NOTE:** You need to have node.js, mysql and npm installed
 
