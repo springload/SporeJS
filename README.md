@@ -1,4 +1,11 @@
+
+⛔️ DEPRECATED
+
+
+
 # SporeJS
+
+_SporeJS - Efficient, fast and robust MVC / PAC (Presentation Abstraction Control) Framework._
 
 ###Build efficient, fast and robust applications in Node.js
 SporeJS is a PAC (Presentation Abstraction Control) Framework which helps developers build solid web applications and RESTful APIs.
